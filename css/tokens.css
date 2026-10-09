@@ -1,0 +1,95 @@
+/* =====================================================================
+   EMBER GLASS — design tokens (warm dark)
+   Smoked glass over a fire-lit dusk. Every colour, size, space and
+   timing value used by the site comes from here.
+   ===================================================================== */
+:root {
+  color-scheme: dark;
+
+  /* ---- Colour: atmosphere ------------------------------------------ */
+  --c-sky-1:   #1E0F07;   /* top: deep brown                             */
+  --c-sky-2:   #3A1B0B;   /* mid: burnt umber                            */
+  --c-sky-3:   #6A2E0E;   /* low: ember haze                             */
+
+  /* ---- Colour: glass (smoked, like Apple dark materials) ----------- */
+  --c-glass:        rgba(255, 236, 220, .075);
+  --c-glass-strong: rgba(36, 18, 9, .62);      /* panels holding long text */
+  --c-glass-hover:  rgba(255, 236, 220, .12);
+  --c-glass-edge:   rgba(255, 230, 210, .16);  /* 1px light edge          */
+  --c-fill:         rgba(255, 236, 220, .08);  /* chips, filters, inputs  */
+  --c-fill-hi:      rgba(255, 236, 220, .16);
+  --c-rule:         rgba(255, 220, 190, .10);
+  --c-rule-strong:  rgba(255, 220, 190, .20);
+
+  /* ---- Colour: ink ------------------------------------------------- */
+  --c-ink:   #FFF4EA;   /* headings, primary text                       */
+  --c-ink-2: #D9C3B1;   /* body                                         */
+  --c-ink-3: #A88A74;   /* meta, readouts                               */
+
+  /* ---- Colour: signal ---------------------------------------------- */
+  --c-signal:     #FF8A2A;
+  --c-signal-hi:  #FFA04F;
+  --c-signal-ink: #FFFFFF;
+  --c-signal-soft: rgba(255, 138, 42, .16);
+
+  /* ---- Colour: status ---------------------------------------------- */
+  --c-ok:    #5ED69A;
+  --c-wip:   #FFA04F;
+  --c-proto: #B39BFF;
+
+  /* ---- Type -------------------------------------------------------- */
+  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-head:    "Barlow", system-ui, sans-serif;
+  --f-body:    "Barlow", system-ui, sans-serif;
+  --f-readout: "Martian Mono", ui-monospace, monospace;
+
+  --t-readout: 0.6875rem;
+  --t-xs:   0.8125rem;
+  --t-sm:   0.9375rem;
+  --t-md:   1.0625rem;
+  --t-lg:   1.4166rem;
+  --t-xl:   1.8888rem;
+  --t-2xl:  2.5182rem;
+  --t-3xl:  clamp(2.4rem, 1.8rem + 2.4vw, 4rem);
+  --t-hero: clamp(3rem, 1.4rem + 5.6vw, 7.4rem);
+
+  --lh-tight: 0.95;
+  --lh-body:  1.55;
+
+  /* ---- Space ------------------------------------------------------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 144px;
+
+  /* ---- Layout ------------------------------------------------------ */
+  --w-page: 1640px;
+  --w-aside: 380px;
+  --gutter: clamp(16px, 2.6vw, 48px);
+  --bar-h: 76px;
+  --measure: 62ch;
+
+  /* ---- Shape ------------------------------------------------------- */
+  --r-panel: 24px;
+  --r-card:  20px;
+  --r-media: 14px;
+  --r-btn:   999px;
+  --r-chip:  999px;
+  --bracket: 18px;
+
+  /* ---- Glass recipe ------------------------------------------------ */
+  --blur: blur(24px) saturate(160%);
+  --edge: inset 0 1px 0 rgba(255, 240, 225, .14), inset 0 0 0 1px rgba(255, 230, 210, .06);
+  --lift: 0 30px 60px -30px rgba(0, 0, 0, .7), 0 2px 6px -2px rgba(0, 0, 0, .3);
+  --lift-hi: 0 40px 80px -30px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 138, 42, .35), 0 20px 60px -20px rgba(255, 110, 20, .35);
+  --focus-ring: 0 0 0 2px var(--c-sky-1), 0 0 0 4px var(--c-signal);
+
+  /* ---- Motion ------------------------------------------------------ */
+  --ease-out: cubic-bezier(.2, .7, .1, 1);
+  --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
+  --d-fast: 140ms;
+  --d-med:  280ms;
+  --d-slow: 600ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --d-fast: 0ms; --d-med: 0ms; --d-slow: 0ms; }
+}

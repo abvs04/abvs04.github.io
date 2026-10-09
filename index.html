@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abhinav Sharma — Project Manager, Interactive Media</title>
+  <meta name="description" content="Project manager for interactive media: games, museum installations, training simulations, AI experiences and XR.">
+  <meta name="theme-color" content="#1E0F07">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Abhinav Sharma — Project Manager, Interactive Media">
+  <meta property="og:description" content="30+ projects for 20+ clients: games, museum installations, training simulations, AI experiences and XR.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="scene" data-scene aria-hidden="true"></div>
+  <a class="skip" href="#missions">Skip to projects</a>
+
+  <div class="progress" aria-hidden="true"><i data-progress></i></div>
+  <header class="bar" data-bar>
+    <div class="bar__glass">
+      <a class="bar__id" href="#top" aria-label="Back to top">
+        <span class="bar__mark" aria-hidden="true"><img src="assets/mark.svg" alt="" width="41" height="38"></span>
+        <span class="bar__div" aria-hidden="true"></span>
+        <span class="bar__text">
+          <span class="bar__name" data-profile="name"></span>
+          <span class="bar__role">Project Manager · Interactive Media · XR</span>
+        </span>
+      </a>
+      <nav class="bar__nav" aria-label="Sections" data-nav>
+        <span class="bar__pill" data-pill aria-hidden="true"></span>
+        <a href="#missions">Work</a>
+        <a href="#lab" data-short-hide>Lab</a>
+        <a href="#about">About</a>
+        <a href="#method" data-short-hide>Method</a>
+        <a href="resume.pdf" target="_blank" rel="noopener" data-resume>Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--primary btn--sm bar__cta" href="#contact">Let’s talk</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ INTRO ============ -->
+    <section class="intro" aria-labelledby="hero-title">
+      <div class="intro__copy">
+        <p class="eyebrow" data-profile="status"></p>
+        <h1 id="hero-title" class="intro__title" data-headline></h1>
+        <p class="intro__lede" data-profile="intro"></p>
+        <div class="intro__actions">
+          <a class="btn btn--primary" href="#featured">See featured work <span class="btn__arrow" aria-hidden="true">↓</span></a>
+          <a class="btn btn--glass" href="#missions">All projects</a>
+        </div>
+      </div>
+      <figure class="intro__card glass">
+        <span class="intro__photo">
+          <img src="media/portrait.jpg" alt="" data-portrait>
+          <span class="brackets" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </span>
+        <figcaption>
+          <span class="intro__name" data-profile="name"></span>
+          <span class="intro__role" data-profile="role"></span>
+          <span class="intro__media" data-media-list></span>
+        </figcaption>
+      </figure>
+      <a class="intro__cue" href="#featured"><span class="intro__mouse" aria-hidden="true"></span>Scroll to see featured work</a>
+    </section>
+
+    <!-- ============ CLIENTS ============ -->
+    <section class="clients" aria-labelledby="clients-title">
+      <div class="clients__head">
+        <h2 id="clients-title" class="clients__title">Clients I’ve delivered for</h2>
+        <p class="clients__sub"><b>30+</b> projects <span aria-hidden="true">·</span> <b>20+</b> clients</p>
+      </div>
+      <div class="clients__rows" data-clients></div>
+    </section>
+
+    <!-- ============ FEATURED (3D scroll showcase) ============ -->
+    <section class="showcase" id="featured" aria-label="Featured projects" data-showcase>
+      <div class="showcase__stage" data-stage>
+        <div class="sc-tint" data-sc-tint aria-hidden="true"></div>
+        <div class="sc-titles" data-sc-titles aria-hidden="true"></div>
+        <div class="sc-deck" data-sc-deck></div>
+        <article class="sc-story glass" data-sc-story aria-live="polite"></article>
+        <nav class="sc-rail glass" data-sc-rail aria-label="Featured projects"></nav>
+        <p class="sc-guide" data-sc-guide><span class="sc-guide__wheel" aria-hidden="true"></span>Scroll to play. Five projects, each told in three beats.</p>
+      </div>
+      <div class="showcase__fallback" data-sc-fallback></div>
+    </section>
+
+    <!-- ============ SHELL: content ============ -->
+    <div class="shell">
+      <div class="content">
+      <!-- ============ WORK ============ -->
+      <section class="section missions" id="missions" aria-labelledby="missions-title">
+        <div class="bridge">
+          <div class="bridge__copy">
+            <p class="eyebrow">After the highlights</p>
+            <h2 id="missions-title" class="section__title">All work</h2>
+            <p class="section__lede">That was the highlight reel. Here’s more of the work, grouped by what it was built for. Hover a card to play it, drag a row to browse, click to open the full project.</p>
+          </div>
+          <div class="bridge__side">
+            <dl class="stats stats--row" data-stats></dl>
+            <div class="seg" role="group" aria-label="How to show the work" data-view>
+              <button type="button" aria-pressed="true" data-v="rows"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.5" width="4" height="4" rx="1"/><rect x="6.5" y="2.5" width="4" height="4" rx="1"/><rect x="11.5" y="2.5" width="3" height="4" rx="1"/><rect x="1.5" y="9.5" width="4" height="4" rx="1"/><rect x="6.5" y="9.5" width="4" height="4" rx="1"/><rect x="11.5" y="9.5" width="3" height="4" rx="1"/></svg>Rows</button>
+              <button type="button" aria-pressed="false" data-v="index"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12M2 8h12M2 12.5h12"/></svg>Index</button>
+              <i class="seg__pill" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="work" data-work>
+          <div class="rows" data-rows></div>
+          <div class="idx" data-index hidden></div>
+        </div>
+      </section>
+
+      <!-- ============ LAB ============ -->
+      <section class="section lab" id="lab" aria-labelledby="lab-title">
+        <div class="section__head">
+          <h2 id="lab-title" class="section__title">Lab</h2>
+          <p class="section__lede">Things I built with my own hands before and alongside managing teams: games in Unity, environments in Unreal, procedural models in Blender, and research on VR in education. This is why I can read a scene, sanity-check an estimate and talk to developers in their terms.</p>
+        </div>
+        <div class="lab-cf">
+          <div class="lab-cf__top">
+            <div class="filters" role="toolbar" aria-label="Filter lab work" data-lab-filters></div>
+            <p class="lab-cf__hint readout" aria-hidden="true">Drag, swipe or use ← → · click the front card to open</p>
+          </div>
+          <div class="lab-cf__stage" data-lab tabindex="0" role="region" aria-roledescription="carousel" aria-label="Lab projects. Use the left and right arrow keys to browse, Enter to open."></div>
+          <div class="lab-cf__bar">
+            <div class="lab-cf__info" data-lab-info aria-live="polite"></div>
+            <div class="lab-cf__ctrl">
+              <span class="readout" data-lab-count></span>
+              <span class="lab-cf__progress" aria-hidden="true"><i data-lab-prog></i></span>
+              <button type="button" class="row__btn" data-lab-step="-1" aria-label="Previous"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg></button>
+              <button type="button" class="row__btn" data-lab-step="1" aria-label="Next"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!-- ============ ABOUT ============ -->
+      <section class="section about" id="about" aria-labelledby="about-title">
+        <div class="section__head">
+          <h2 id="about-title" class="section__title">About</h2>
+          <p class="section__lede">From building game levels to running the teams that build them.</p>
+        </div>
+        <div class="about__body">
+          <div class="about__text" data-about></div>
+          <div>
+            <dl class="about__facts" data-background></dl>
+            <blockquote class="quote" data-quote></blockquote>
+          </div>
+        </div>
+      </section>
+  
+      <!-- ============ METHOD ============ -->
+      <section class="section method" id="method" aria-labelledby="method-title">
+        <div class="section__head">
+          <h2 id="method-title" class="section__title">How I run a project</h2>
+          <p class="section__lede">Interactive projects fail in a few predictable places: vague scope, untested hardware and the first day in front of real people. Each phase below exists to close one of those gaps.</p>
+        </div>
+        <ol class="pipeline">
+          <li class="pipeline__step">
+            <span class="pipeline__no readout">Phase 1</span>
+            <h3>Discovery</h3>
+            <p>Sit with the people who’ll actually use it. Turn manuals, briefs and wish lists into one interaction script everyone signs.</p>
+            <span class="pipeline__out readout">out: signed interaction script</span>
+          </li>
+          <li class="pipeline__step">
+            <span class="pipeline__no readout">Phase 2</span>
+            <h3>Spike</h3>
+            <p>Prove the riskiest idea on the real hardware in two weeks or less, whether that’s a splat capture, a touch wall, hand tracking or a voice pipeline, before anyone commits to a timeline.</p>
+            <span class="pipeline__out readout">out: on-device proof</span>
+          </li>
+          <li class="pipeline__step">
+            <span class="pipeline__no readout">Phase 3</span>
+            <h3>Production</h3>
+            <p>Two-week sprints with a playable build every Friday. Clients review on the real device, not in screenshots.</p>
+            <span class="pipeline__out readout">out: weekly playable builds</span>
+          </li>
+          <li class="pipeline__step">
+            <span class="pipeline__no readout">Phase 4</span>
+            <h3>On-site QA</h3>
+            <p>Comfort, performance and lighting are tested in the real space or a close copy of it: hangar, museum hall, event floor or classroom.</p>
+            <span class="pipeline__out readout">out: acceptance checklist</span>
+          </li>
+          <li class="pipeline__step">
+            <span class="pipeline__no readout">Phase 5</span>
+            <h3>Deploy &amp; handover</h3>
+            <p>Install, train the staff and hand over content and device management, so the project keeps running after we leave.</p>
+            <span class="pipeline__out readout">out: runbook + trained staff</span>
+          </li>
+        </ol>
+      </section>
+  
+      <!-- ============ LOADOUT ============ -->
+      <section class="section loadout" id="loadout" aria-labelledby="loadout-title">
+        <div class="section__head">
+          <h2 id="loadout-title" class="section__title">Loadout</h2>
+          <p class="section__lede">The tools I use every week, the AI stack I run myself, and the hardware I’ve shipped on.</p>
+        </div>
+        <div class="slot slot--ai">
+          <div class="slot--ai__head">
+            <p class="eyebrow">Toolkit</p>
+            <h3 class="slot__title">I build with these, and use AI hands-on, not just in decks</h3>
+            <p class="slot--ai__line">Unity, Unreal and Figma are where the work gets made. On the AI side I run ComfyUI locally on my own machine, generate video with cloud tools like Seedance, Kling and Runway, and voice characters with ElevenLabs. It’s how projects like PoP. Mankous shipped in two weeks.</p>
+          </div>
+          <div class="slot--ai__groups">
+            <div class="is-core"><span class="readout">Build &amp; design</span><ul class="ai-chips"><li>Unity</li><li>Unreal Engine</li><li>Figma</li><li>Blender</li></ul></div>
+            <div><span class="readout">Local AI, on my machine</span><ul class="ai-chips"><li>ComfyUI</li><li>Flux / Stable Diffusion</li></ul></div>
+            <div><span class="readout">Video generation</span><ul class="ai-chips"><li>Seedance</li><li>Kling</li><li>Runway</li></ul></div>
+            <div><span class="readout">3D generation</span><ul class="ai-chips"><li>Meshy</li><li>Tripo</li></ul></div>
+            <div><span class="readout">Voice</span><ul class="ai-chips"><li>ElevenLabs</li></ul></div>
+            <div><span class="readout">Assistants &amp; code</span><ul class="ai-chips"><li>ChatGPT</li><li>Claude</li><li>Gemini</li><li>Copilot</li><li>Cursor</li></ul></div>
+            <div><span class="readout">Finishing</span><ul class="ai-chips"><li>Topaz</li><li>Adobe Firefly</li></ul></div>
+            <div><span class="readout">AI experiences shipped</span><ul class="ai-chips"><li>Holobox characters</li><li>Voice Q&amp;A kiosks</li><li>AI avatars</li></ul></div>
+          </div>
+        </div>
+        <div class="loadout__grid">
+          <div class="slot">
+            <h3 class="slot__title">Delivery</h3>
+            <ul class="slot__list"><li>Asana</li><li>Jira &amp; Confluence</li><li>Notion</li><li>Miro</li><li>Agile / Scrum</li><li>Risk &amp; scope registers</li></ul>
+          </div>
+          <div class="slot">
+            <h3 class="slot__title">Production</h3>
+            <ul class="slot__list"><li>Unity</li><li>Unreal Engine</li><li>Meta XR SDK</li><li>Gaussian splat capture</li><li>Figma</li><li>Git &amp; build pipelines</li></ul>
+          </div>
+          <div class="slot">
+            <h3 class="slot__title">Shipped on</h3>
+            <ul class="slot__list"><li>Multi-touch video walls</li><li>AI kiosks &amp; avatars</li><li>Meta Quest 3 &amp; VR fleets</li><li>Mobile &amp; PC games</li><li>Tablets &amp; AR</li></ul>
+          </div>
+          <div class="slot">
+            <h3 class="slot__title">Sectors</h3>
+            <ul class="slot__list"><li>Aviation MRO</li><li>Energy</li><li>Museums &amp; government</li><li>Tourism &amp; heritage</li><li>Education &amp; global health</li></ul>
+          </div>
+        </div>
+      </section>
+  
+      <!-- ============ CONTACT ============ -->
+      <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="contact__title">Got an interactive project that needs to ship?</h2>
+        <a class="contact__email" data-profile-email></a>
+        <ul class="contact__links" data-links></ul>
+        <p class="contact__where readout" data-profile="location"></p>
+      </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <span class="readout">© <span data-year></span> <span data-profile="name"></span></span>
+    <a class="readout" href="design-system.html">Design system</a>
+  </footer>
+
+  <!-- ============ CASE FILE ============ -->
+  <dialog class="casefile" data-casefile aria-labelledby="cf-title">
+    <div class="casefile__inner" data-casefile-body></div>
+  </dialog>
+
+
+
+  <script src="js/data.js"></script>
+  <script src="js/media.js"></script>
+  <script src="js/app.js"></script>
+  <script src="assets/vendor/three-0.149.min.js" defer></script>
+  <script src="js/scene.js" defer></script>
+  <script src="js/showcase.js" defer></script>
+</body>
+</html>
