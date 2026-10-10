@@ -40,12 +40,13 @@ window.PROFILE = {
   about: [
     "I came to project management from the other side of the table. I studied computer games development, built levels and environments in Unreal Engine and Unity, and modelled 3D assets in Blender and Substance Painter.",
     "I then did a master’s in design innovation management, where my research was on virtual and augmented reality in education. That’s where design thinking and business planning became part of how I work.",
-    "Now I run interactive projects at DJX Labs, from touch walls and AI kiosks to games and headset training. Because I can open the project, read the scene and judge an estimate from the inside, conversations with developers and artists move faster and scope stays honest. I also run my own local AI setup, so I know what generative video and voice can actually deliver on a deadline."
+    "At DJX Labs I lead the 3D team and run interactive projects, from touch walls and AI kiosks to games and headset training. Because I can open the project, read the scene and judge an estimate from the inside, conversations with developers and artists move faster and scope stays honest. I also run my own local AI setup, so I know what generative video and voice can actually deliver on a deadline."
   ],
   background: [
     { label: "Studied", value: "Computer games development" },
     { label: "Master’s", value: "Design innovation management" },
     { label: "Research", value: "VR and AR in education" },
+    { label: "Leads", value: "The 3D team at DJX Labs, alongside project management" },
     { label: "Hands-on", value: "Unreal, Unity, Blender, Substance Painter" },
     { label: "AI tools", value: "ComfyUI locally; Seedance, Kling and Runway for video; ElevenLabs for voice" }
   ],
