@@ -25,7 +25,7 @@
   host.appendChild(renderer.domElement);
 
   const scene = new T.Scene();
-  scene.fog = new T.FogExp2(0x1e0f07, 0.05);
+  scene.fog = new T.FogExp2(0x1e0f07, 0.022);
   const camera = new T.PerspectiveCamera(45, 1, 0.1, 90);
   camera.position.set(0, 0, 15);
 
@@ -185,22 +185,29 @@
   }
   const MAKE = { headset, glasses, gamepad, laptop, phone, kiosk };
 
-  // which device belongs to which section; x/y offset from the section's spot
-  const PLAN = [
-    { sel: ".intro", kind: "glasses", x: 2.2, y: 3.4, s: 1.15, yaw: -.55 },
-    { sel: "#featured", kind: "headset", x: -7.6, y: -2.6, s: 1, yaw: .75 },
-    { sel: "#missions", kind: "gamepad", x: 7.6, y: 1.5, s: 1.05, yaw: -.5 },
-    { sel: "#lab", kind: "laptop", x: -7.8, y: 1.4, s: .95, yaw: .6 },
-    { sel: "#about", kind: "phone", x: 8.2, y: -.6, s: 1.1, yaw: -.55 },
-    { sel: "#method", kind: "kiosk", x: -8.4, y: .2, s: .9, yaw: .5 },
-    { sel: "#loadout", kind: "headset", x: 8, y: 1.6, s: .85, yaw: -.8 },
-    { sel: "#contact", kind: "gamepad", x: 7.4, y: -1.8, s: .9, yaw: -.45 },
+  // all devices live in the opening view, scattered in depth (x, y, z, scale, starting yaw).
+  // As you scroll the camera sinks, so they rise and drift away like you are leaving a room.
+  const PLAN = small ? [
+    { kind: "glasses", p: [3.2, 7.8, -12], s: .75, yaw: -.5 },
+    { kind: "headset", p: [-3.8, 4.2, -14], s: .8, yaw: .7 },
+    { kind: "gamepad", p: [3.6, -2.2, -13], s: .75, yaw: -.6 },
+    { kind: "phone", p: [-4, -6.5, -12], s: .8, yaw: .5 },
+    { kind: "laptop", p: [2.6, -9.5, -16], s: .7, yaw: -.5 },
+    { kind: "kiosk", p: [-1.2, 10.5, -20], s: .7, yaw: .4 },
+  ] : [
+    { kind: "glasses", p: [3.4, 7.2, -10], s: 1, yaw: -.5 },
+    { kind: "headset", p: [18, 5.5, -16], s: 1.05, yaw: -.8 },
+    { kind: "gamepad", p: [2.4, -9.2, -13], s: 1, yaw: -.4 },
+    { kind: "laptop", p: [-15, -10, -18], s: 1, yaw: .6 },
+    { kind: "phone", p: [-7, 10.5, -17], s: 1, yaw: .5 },
+    { kind: "kiosk", p: [19, -7.5, -20], s: .95, yaw: -.5 },
+    { kind: "headset", p: [-21, 6, -24], s: .9, yaw: .9 },
   ];
   const K = small ? .0042 : .0046;   // world units per scrolled pixel: slower than the page, so it feels deep
   const devices = PLAN.map((p, i) => {
     const g = MAKE[p.kind]();
-    const holder = new T.Group(); holder.add(g); scene.add(holder);
-    return { ...p, g, holder, home: 0, phase: i * 1.7 };
+    const holder = new T.Group(); holder.add(g); holder.position.set(...p.p); holder.scale.setScalar(p.s); scene.add(holder);
+    return { ...p, g, holder, phase: i * 1.7 };
   });
 
   // rings between the devices
@@ -213,17 +220,7 @@
   });
 
   function place() {
-    const vh = innerHeight;
-    devices.forEach(d => {
-      const el = document.querySelector(d.sel);
-      const top = el ? el.getBoundingClientRect().top + scrollY : 0;
-      const center = el ? top + Math.min(el.offsetHeight, vh * 1.4) / 2 - vh / 2 : 0;
-      d.home = -Math.max(0, center) * K;
-    });
-    rings.forEach(r => {
-      const d = devices[r.userData.idx];
-      r.position.set(r.userData.side * (small ? 2.4 : 9), d.home - 3.5, -7);
-    });
+    rings.forEach((r, i) => r.position.set(r.userData.side * (small ? 2.4 : 9), -4 - i * 14, -7));
   }
 
   // ---- embers: tiny additive points drifting upward, kept around the camera
@@ -277,17 +274,11 @@
     glow.position.set(small ? 0 : 5, camY - 1.5, -8);
 
     for (const d of devices) {
-      // 1 when this device's section is centred on screen, falling to 0 a screen and a half away
-      const near = Math.max(0, 1 - Math.abs(camY - d.home) / 9), e = near * near * (3 - 2 * near);
-      const sx = small ? (d.x > 0 ? 2.5 : -2.5) : d.x;
-      const z = (small ? -6 : -7) + e * (small ? 3 : 5.5);
-      d.holder.position.set(sx * (1 - e * .12), d.home + d.y * (small ? .6 : 1) + Math.sin(t * .5 + d.phase) * .18, z);
-      const sc = d.s * (small ? .85 : 1.45) * (.85 + e * .15);
-      d.holder.scale.setScalar(sc);
-      // turn toward the viewer as it arrives; drift and sway otherwise
-      d.g.rotation.y = d.yaw * (1.9 - e * .9) + Math.sin(t * .35 + d.phase) * .22 + (reduce ? 0 : boost * .05 * Math.sin(d.phase));
-      d.g.rotation.x = .18 * (1 - e) + Math.sin(t * .3 + d.phase) * .08;
-      d.g.rotation.z = Math.sin(t * .25 + d.phase) * .05;
+      const [x, y, z] = d.p;
+      d.holder.position.set(x, y + Math.sin(t * .45 + d.phase) * .3, z);
+      d.g.rotation.y = d.yaw + Math.sin(t * .3 + d.phase) * .35 + (reduce ? 0 : boost * .04 * Math.sin(d.phase));
+      d.g.rotation.x = .12 + Math.sin(t * .27 + d.phase) * .1;
+      d.g.rotation.z = Math.sin(t * .22 + d.phase) * .06;
     }
     for (const r of rings) r.rotation.z += r.userData.spin * dt * (1 + boost);
     ringMat.opacity = .42 + Math.sin(t * 1.3) * .1;
