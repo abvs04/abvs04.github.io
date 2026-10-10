@@ -3,8 +3,8 @@
    Visit the site once with ?notrack to stop counting your own visits on that browser (?track to undo). */
 (() => {
   const CONFIG = {
-    ga4: "",       // e.g. "G-ABC123XYZ"  (GA4 → Admin → Data streams → Measurement ID)
-    clarity: "",   // e.g. "q1w2e3r4t5"   (Clarity → Settings → Overview → Project ID)
+    ga4: "G-GYRSY44KGY",     // e.g. "G-ABC123XYZ"  (GA4 → Admin → Data streams → Measurement ID)
+    clarity: "yvfvujgdpw",   // e.g. "q1w2e3r4t5"   (Clarity → Settings → Overview → Project ID)
   };
 
   const store = (k, v) => { try { v === undefined ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (_) {} };
