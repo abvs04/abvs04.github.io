@@ -21,10 +21,12 @@
   const statusClass = s => "status--" + s.replace(/\s+/g, "-");
   const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 
+  const track = (name, params = {}) => document.dispatchEvent(new CustomEvent("pf:track", { detail: { name, params } }));
+
   /* ---------- profile ---------- */
   $$("[data-profile]").forEach(el => (el.textContent = P[el.dataset.profile] ?? ""));
   const mail = $("[data-profile-email]");
-  mail.textContent = P.email; mail.href = "mailto:" + P.email;
+  mail.innerHTML = esc(P.email).replace("@", "<wbr>@"); mail.href = "mailto:" + P.email;
   $("[data-links]").innerHTML = P.links.map(l => `<li><a class="btn btn--glass btn--sm" href="${esc(l.href)}" target="_blank" rel="noopener"${/resume\.pdf$/.test(l.href) ? " data-resume" : ""}>${esc(l.label)}</a></li>`).join("");
   $("[data-year]").textContent = new Date().getFullYear();
   // headline: *word* becomes the highlighted word
@@ -221,7 +223,7 @@
       rowsEl.hidden = b.dataset.v !== "rows"; idxEl.hidden = b.dataset.v !== "index";
       live(null);
     };
-    apply();
+    apply(); track("work_view", { view: b.dataset.v });
     const shown = b.dataset.v === "rows" ? rowsEl : idxEl;
     shown.classList.remove("is-entering"); void shown.offsetWidth; shown.classList.add("is-entering");
   });
@@ -336,6 +338,7 @@
   }
   function openCase(slug, push, type = "case") {
     const key = type + "/" + slug;
+    track(type === "lab" ? "lab_open" : "project_open", { project: slug });
     if (push) history.pushState({ cf: key }, "", "#" + key);
     openUI(key);
   }
@@ -582,6 +585,16 @@
       }
       $$("[data-mag]").forEach(el => { if (el !== mag) { el.style.translate = ""; delete el.dataset.mag; } });
     }, { passive: true });
+  }
+  /* ---------- phone menu ---------- */
+  const menuBtn = $("[data-menu]"), sheet = $("[data-sheet]");
+  if (menuBtn && sheet) {
+    const setMenu = open => { sheet.hidden = !open; menuBtn.setAttribute("aria-expanded", open); };
+    menuBtn.addEventListener("click", e => { e.stopPropagation(); setMenu(sheet.hidden); });
+    sheet.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+    document.addEventListener("click", e => { if (!sheet.hidden && !sheet.contains(e.target)) setMenu(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !sheet.hidden) { setMenu(false); menuBtn.focus(); } });
+    matchMedia("(min-width: 761px)").addEventListener("change", e => e.matches && setMenu(false));
   }
   const prog = $("[data-progress]");
   const setProg = () => { if (prog) prog.style.transform = `scaleX(${Math.min(1, scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight))})`; };

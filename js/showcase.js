@@ -192,6 +192,7 @@
     const first = active < 0;
     if (!first) buzz(10);
     active = i;
+    document.dispatchEvent(new CustomEvent("pf:track", { detail: { name: "showcase_chapter", params: { chapter: i + 1, project: items[i].slug } } }));
     story.classList.add("is-out");
     setTimeout(() => {
       if (active !== i) return;
