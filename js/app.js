@@ -586,6 +586,46 @@
       $$("[data-mag]").forEach(el => { if (el !== mag) { el.style.translate = ""; delete el.dataset.mag; } });
     }, { passive: true });
   }
+  /* ---------- depth: tilt cards toward the cursor, or with the phone ---------- */
+  const TILT = ".tile__btn, .pipeline__step, .slot, .intro__card";
+  const markTilt = () => $$(TILT).forEach(el => el.classList.add("tilt"));
+  let mtQ = false; markTilt();
+  new MutationObserver(() => { if (!mtQ) { mtQ = true; requestAnimationFrame(() => { mtQ = false; markTilt(); }); } }).observe(document.body, { childList: true, subtree: true });
+  if (!reduceMotion && canHover) {
+    let cur = null;
+    const reset = el => { el.classList.remove("is-tilting"); el.style.setProperty("--rx", "0deg"); el.style.setProperty("--ry", "0deg"); };
+    document.addEventListener("pointermove", e => {
+      const el = e.target.closest && e.target.closest(".tilt");
+      if (cur && cur !== el) { reset(cur); cur = null; }
+      if (!el) return;
+      cur = el;
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      const k = Math.min(1, 380 / Math.max(r.width, r.height)) * 9;   // big panels tilt less
+      el.classList.add("is-tilting");
+      el.style.setProperty("--ry", ((x - .5) * k).toFixed(2) + "deg");
+      el.style.setProperty("--rx", ((.5 - y) * k).toFixed(2) + "deg");
+      el.style.setProperty("--gx", (x * 100).toFixed(1) + "%");
+      el.style.setProperty("--gy", (y * 100).toFixed(1) + "%");
+    }, { passive: true });
+    document.addEventListener("pointerleave", () => cur && reset(cur));
+  } else if (!reduceMotion) {
+    // phones: cards on screen lean with the device and the reflection slides (Android shares motion without asking)
+    let gx = 0, gy = 0, queued = false;
+    const apply = () => {
+      queued = false;
+      $$(".tilt").forEach(el => {
+        const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+        el.style.setProperty("--ry", (gx * 6).toFixed(2) + "deg"); el.style.setProperty("--rx", (-gy * 5).toFixed(2) + "deg");
+        el.style.setProperty("--gx", (50 + gx * 60).toFixed(1) + "%"); el.style.setProperty("--gy", (50 + gy * 60).toFixed(1) + "%");
+      });
+    };
+    addEventListener("deviceorientation", e => {
+      if (e.gamma == null) return;
+      gx = Math.max(-1, Math.min(1, e.gamma / 35)); gy = Math.max(-1, Math.min(1, (e.beta - 50) / 40));
+      if (!queued) { queued = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+  }
+
   /* ---------- phone menu ---------- */
   const menuBtn = $("[data-menu]"), sheet = $("[data-sheet]");
   if (menuBtn && sheet) {

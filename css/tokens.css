@@ -38,12 +38,14 @@
   --c-proto: #B39BFF;
 
   /* ---- Type -------------------------------------------------------- */
-  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --f-head:    "Barlow", system-ui, sans-serif;
-  --f-body:    "Barlow", system-ui, sans-serif;
-  --f-readout: "Martian Mono", ui-monospace, monospace;
+  --f-display: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-head:    "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:    "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-readout: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --track-display: -0.035em;   /* big headings sit tight, Apple-style */
+  --track-head:    -0.02em;
 
-  --t-readout: 0.6875rem;
+  --t-readout: 0.8125rem;
   --t-xs:   0.8125rem;
   --t-sm:   0.9375rem;
   --t-md:   1.0625rem;
